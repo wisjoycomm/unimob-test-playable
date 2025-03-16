@@ -1,0 +1,6 @@
+Mục tiêu:
+  - Sử dụng tài nguyên trong thư mục resources để hoàn thành bài test playable ads như bài mẫu "Demo.html".
+Yêu cầu:
+  - Build ra định dạng playable ads (1 file html duy nhất).
+  - Đính kèm đường dẫn sản phẩm demo khi gửi mail.
+  - Đẩy project lên git platform (github, gitlab, ...) và đính kèm link khi gửi mail.

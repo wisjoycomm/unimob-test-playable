@@ -1,0 +1,97 @@
+{
+  "ver": "2.3.4",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "42a327ca-d875-4650-a99c-2c84401ee8bf",
+  "files": [],
+  "subMetas": {
+    "41ac8": {
+      "importer": "gltf-mesh",
+      "uuid": "42a327ca-d875-4650-a99c-2c84401ee8bf@41ac8",
+      "displayName": "",
+      "id": "41ac8",
+      "name": "Cube.001.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 498
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "85a98": {
+      "importer": "gltf-material",
+      "uuid": "42a327ca-d875-4650-a99c-2c84401ee8bf@85a98",
+      "displayName": "",
+      "id": "85a98",
+      "name": "Material_Map_propotype.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "30b18": {
+      "importer": "gltf-scene",
+      "uuid": "42a327ca-d875-4650-a99c-2c84401ee8bf@30b18",
+      "displayName": "",
+      "id": "30b18",
+      "name": "2.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "fbx": {
+      "smartMaterialEnabled": true
+    },
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "42a327ca-d875-4650-a99c-2c84401ee8bf@41ac8"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "42a327ca-d875-4650-a99c-2c84401ee8bf@85a98"
+      ],
+      "scenes": [
+        "42a327ca-d875-4650-a99c-2c84401ee8bf@30b18"
+      ]
+    },
+    "redirect": "42a327ca-d875-4650-a99c-2c84401ee8bf@30b18"
+  }
+}
