@@ -46,7 +46,6 @@ export class HealthUI extends Component implements IHealth {
     }
 
     protected setAnimation(floatValue: number): void {
-        tween(this.progressBar.progress).by(0.1, floatValue).start();
     }
 }
 

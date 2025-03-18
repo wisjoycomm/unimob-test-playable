@@ -240,12 +240,12 @@
       ],
       "subMetas": {}
     },
-    "c2696": {
+    "1f586": {
       "importer": "gltf-animation",
-      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@c2696",
+      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@1f586",
       "displayName": "",
-      "id": "c2696",
-      "name": "Idle.animation",
+      "id": "1f586",
+      "name": "idle.animation",
       "userData": {
         "gltfIndex": 5,
         "wrapMode": 2,
@@ -332,12 +332,12 @@
       ],
       "subMetas": {}
     },
-    "5f8df": {
+    "24c9f": {
       "importer": "gltf-animation",
-      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@5f8df",
+      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@24c9f",
       "displayName": "",
-      "id": "5f8df",
-      "name": "Move 1.animation",
+      "id": "24c9f",
+      "name": "move.animation",
       "userData": {
         "gltfIndex": 9,
         "wrapMode": 2,
@@ -401,12 +401,12 @@
       ],
       "subMetas": {}
     },
-    "81acc": {
+    "fe3d6": {
       "importer": "gltf-animation",
-      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@81acc",
+      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@fe3d6",
       "displayName": "",
-      "id": "81acc",
-      "name": "Manufacture.animation",
+      "id": "fe3d6",
+      "name": "prepare.animation",
       "userData": {
         "gltfIndex": 12,
         "wrapMode": 2,
@@ -878,7 +878,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Idle",
+            "name": "idle",
             "from": 0,
             "to": 1.3333333730697632,
             "wrapMode": 2
@@ -930,7 +930,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Move 1",
+            "name": "move",
             "from": 0,
             "to": 0.5333333611488342,
             "wrapMode": 2
@@ -969,7 +969,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Manufacture",
+            "name": "prepare",
             "from": 0,
             "to": 1,
             "wrapMode": 2

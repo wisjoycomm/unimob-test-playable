@@ -42,52 +42,6 @@
       ],
       "subMetas": {}
     },
-    "75711": {
-      "importer": "gltf-animation",
-      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@75711",
-      "displayName": "",
-      "id": "75711",
-      "name": "Boss 1_Spawn.animation",
-      "userData": {
-        "gltfIndex": 11,
-        "wrapMode": 2,
-        "sample": 30,
-        "span": {
-          "from": 0,
-          "to": 0.8666666746139526
-        },
-        "events": []
-      },
-      "ver": "1.0.16",
-      "imported": true,
-      "files": [
-        ".cconb"
-      ],
-      "subMetas": {}
-    },
-    "79134": {
-      "importer": "gltf-animation",
-      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@79134",
-      "displayName": "",
-      "id": "79134",
-      "name": "Boss 1_Combo.animation",
-      "userData": {
-        "gltfIndex": 6,
-        "wrapMode": 2,
-        "sample": 30,
-        "span": {
-          "from": 0,
-          "to": 2.933333396911621
-        },
-        "events": []
-      },
-      "ver": "1.0.16",
-      "imported": true,
-      "files": [
-        ".cconb"
-      ],
-      "subMetas": {}
-    },
     "e4017": {
       "importer": "gltf-mesh",
       "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@e4017",
@@ -198,12 +152,12 @@
       ],
       "subMetas": {}
     },
-    "984db": {
+    "989ed": {
       "importer": "gltf-animation",
-      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@984db",
+      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@989ed",
       "displayName": "",
-      "id": "984db",
-      "name": "Boss 1_Attack 4.animation",
+      "id": "989ed",
+      "name": "attack.animation",
       "userData": {
         "gltfIndex": 4,
         "wrapMode": 2,
@@ -221,12 +175,12 @@
       ],
       "subMetas": {}
     },
-    "5cac4": {
+    "2f80f": {
       "importer": "gltf-animation",
-      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@5cac4",
+      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@2f80f",
       "displayName": "",
-      "id": "5cac4",
-      "name": "Boss 1_Bi tan cong.animation",
+      "id": "2f80f",
+      "name": "bi-hit.animation",
       "userData": {
         "gltfIndex": 5,
         "wrapMode": 2,
@@ -234,6 +188,30 @@
         "span": {
           "from": 0,
           "to": 0.5
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "3af03": {
+      "importer": "gltf-animation",
+      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@3af03",
+      "displayName": "",
+      "id": "3af03",
+      "name": "Boss 1_1.animation",
+      "userData": {
+        "gltfIndex": 6,
+        "wrapMode": 2,
+        "speed": 1,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 2.933333396911621
         },
         "events": []
       },
@@ -267,12 +245,12 @@
       ],
       "subMetas": {}
     },
-    "03823": {
+    "1f586": {
       "importer": "gltf-animation",
-      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@03823",
+      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@1f586",
       "displayName": "",
-      "id": "03823",
-      "name": "Boss 1_Idle.animation",
+      "id": "1f586",
+      "name": "idle.animation",
       "userData": {
         "gltfIndex": 8,
         "wrapMode": 2,
@@ -303,6 +281,29 @@
         "span": {
           "from": 0,
           "to": 0.8999999761581421
+        },
+        "events": []
+      },
+      "ver": "1.0.16",
+      "imported": true,
+      "files": [
+        ".cconb"
+      ],
+      "subMetas": {}
+    },
+    "d2899": {
+      "importer": "gltf-animation",
+      "uuid": "6cb3bbdb-d9c8-44c8-8b9a-cbe6ef6ba1e9@d2899",
+      "displayName": "",
+      "id": "d2899",
+      "name": "spawn.animation",
+      "userData": {
+        "gltfIndex": 11,
+        "wrapMode": 2,
+        "sample": 30,
+        "span": {
+          "from": 0,
+          "to": 0.8666666746139526
         },
         "events": []
       },
@@ -498,7 +499,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Boss 1_Attack 4",
+            "name": "attack",
             "from": 0,
             "to": 2,
             "wrapMode": 2
@@ -511,7 +512,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Boss 1_Bi tan cong",
+            "name": "bi-hit",
             "from": 0,
             "to": 0.5,
             "wrapMode": 2
@@ -524,10 +525,11 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Boss 1_Combo",
+            "name": "Boss 1_1",
             "from": 0,
             "to": 2.933333396911621,
-            "wrapMode": 2
+            "wrapMode": 2,
+            "speed": 1
           }
         ]
       },
@@ -550,7 +552,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Boss 1_Idle",
+            "name": "idle",
             "from": 0,
             "to": 2.6666667461395264,
             "wrapMode": 2
@@ -589,7 +591,7 @@
         "fps": 30,
         "splits": [
           {
-            "name": "Boss 1_Spawn",
+            "name": "spawn",
             "from": 0,
             "to": 0.8666666746139526,
             "wrapMode": 2

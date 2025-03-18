@@ -116,7 +116,7 @@
         "_value": false
       },
       "marionette": {
-        "_value": true
+        "_value": false
       },
       "custom-pipeline": {
         "_value": false
@@ -132,7 +132,6 @@
       "gfx-webgl",
       "gfx-webgl2",
       "light-probe",
-      "marionette",
       "particle",
       "physics-builtin",
       "primitive",
