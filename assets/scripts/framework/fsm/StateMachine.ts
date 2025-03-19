@@ -27,7 +27,7 @@ export abstract class State<T> {
      * Được gọi để kiểm tra nếu nên chuyển sang state khác
      * @returns State mới hoặc null nếu không chuyển state
      */
-    public abstract checkTransitions(): State<T> | null;
+    public abstract canTransitions(): boolean;
 }
 
 /**
@@ -37,13 +37,9 @@ export abstract class State<T> {
 export class StateMachine<T> extends Component {
     // State hiện tại
     private currentState: State<T> = null;
-
+    private nextState: State<T> = null;
     // Danh sách tất cả state
     private states: Map<string, State<T>> = new Map();
-
-    // Thời gian tối thiểu giữa các lần chuyển state
-    private minTimeInState: number = 0.1;
-    private timeInCurrentState: number = 0;
 
     // Owner của state machine
     private owner: T = null;
@@ -70,23 +66,21 @@ export class StateMachine<T> extends Component {
      * @param stateName Tên của state mới
      * @returns true nếu chuyển state thành công
      */
-    public changeState(stateName: string): boolean {
+    public changeState(stateName: string){
         const newState = this.states.get(stateName);
         if (!newState) {
             console.warn(`State '${stateName}' không tồn tại`);
-            return false;
+            return;
         }
-
-        if (this.currentState) {
-            this.currentState.onExit(newState);
-        }
-
         const prevState = this.currentState;
-        this.currentState = newState;
-        this.timeInCurrentState = 0;
+        if (!this.currentState) {
+            this.currentState = newState;
+            this.currentState.onEnter(prevState);
+        }
+        else {
+            this.nextState = newState;
+        }
 
-        this.currentState.onEnter(prevState);
-        return true;
     }
 
     /**
@@ -96,22 +90,18 @@ export class StateMachine<T> extends Component {
     public update(deltaTime: number): void {
         if (!this.currentState) return;
 
-        this.timeInCurrentState += deltaTime;
-
         // Cập nhật state hiện tại
         this.currentState.update(deltaTime);
 
-        // Kiểm tra nếu đã đủ thời gian tối thiểu trong state hiện tại
-        if (this.timeInCurrentState >= this.minTimeInState) {
-            // Kiểm tra nếu cần chuyển state
-            const nextState = this.currentState.checkTransitions();
-            if (nextState) {
-                this.currentState.onExit(nextState);
-                const prevState = this.currentState;
-                this.currentState = nextState;
-                this.timeInCurrentState = 0;
-                this.currentState.onEnter(prevState);
-            }
+        if (!this.currentState.canTransitions()) {
+            return;
+        }
+        if (this.nextState) {
+            this.currentState.onExit(this.nextState);
+            const prevState = this.currentState;
+            this.currentState = this.nextState;
+            this.nextState = null;
+            this.currentState.onEnter(prevState);
         }
     }
 
@@ -124,10 +114,11 @@ export class StateMachine<T> extends Component {
     }
 
     /**
-     * Đặt thời gian tối thiểu giữa các lần chuyển state
-     * @param time Thời gian tối thiểu (giây)
+     * Lấy state theo tên
+     * @param name Tên của state
+     * @returns State tương ứng
      */
-    public setMinTimeInState(time: number): void {
-        this.minTimeInState = time;
+    public getState(name: string): State<T> {
+        return this.states.get(name);
     }
 }

@@ -4,6 +4,7 @@ import { Singleton } from 'db://assets/scripts/framework/core/Singleton';
 import { CameraController } from './CameraController';
 import { PoolManager } from 'db://assets/scripts/framework/managers/PoolManager';
 import { NodeArea } from './NodeArea';
+import { OrderRecept } from './character/types/OrderRecept';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -13,7 +14,10 @@ export class GameManager extends Component {
     // Prefabs
     @property({ type: Prefab, displayName: "Team Prefab", tooltip: "Prefab for the team" })
     teamPrefab: Prefab = null!;
-
+    @property({ type: Prefab, displayName: "Bullet Prefab", tooltip: "Prefab for the bullet" })
+    bulletPrefab: Prefab = null!;
+    @property({ type: Prefab, displayName: "Smoke Prefab", tooltip: "Prefab for the smoke" })
+    smokePrefab: Prefab = null!;
     // Areas
     @property(Node)
     spawnPoint: Node = null!;
@@ -25,11 +29,10 @@ export class GameManager extends Component {
     pistolArea: Node = null!;
     @property(Node)
     riffleArea: Node = null!;
-    @property(Node)
-    staffArea: Node = null!;
 
-    @property(Map)
-    map: Map<string, NodeArea[]> = new Map();
+    // Orders
+    mapOrders: OrderRecept[] = [];
+    mapNodes: Map<string, NodeArea[]> = new Map();
 
     protected onLoad(): void {
         GameManager.instance = this;
@@ -45,40 +48,61 @@ export class GameManager extends Component {
         PoolManager.instance.createPool("team", this.teamPrefab, {
             maxSize: 8,
         });
+        // PoolManager.instance.createPool("bullet", this.bulletPrefab, {
+        //     maxSize: 10,
+        // });
+        // PoolManager.instance.createPool("smoke", this.smokePrefab, {
+        //     maxSize: 4,
+        // });
 
-        this.map.set("waiting", this.waitingArea.children.map(node => ({ nodes: node, used: false })));
-        this.map.set("battle", this.battleArea.children.map(node => ({ nodes: node, used: false })));
-        this.map.set("pistol", this.pistolArea.children.map(node => ({ nodes: node, used: false })));
-        this.map.set("rifle", this.riffleArea.children.map(node => ({ nodes: node, used: false })));
-        this.map.set("staff", this.staffArea.children.map(node => ({ nodes: node, used: false })));
+
+        this.mapNodes.set("waiting", this.waitingArea.children.map(node => ({ node: node, used: false })));
+        this.mapNodes.set("battle", this.battleArea.children.map(node => ({ node: node, used: false })));
+        this.mapNodes.set("pistol", this.pistolArea.children.map(node => ({ node: node, used: false })));
+        this.mapNodes.set("rifle", this.riffleArea.children.map(node => ({ node: node, used: false })));
+
+        this.mapOrders.push(new OrderRecept("pistol", 2));
+        this.mapOrders.push(new OrderRecept("rifle", 3));
     }
 
     private spawnTeam(): void {
-        const waitingNodes = this.map.get("waiting");
+        const waitingNodes = this.mapNodes.get("waiting");
         var node = waitingNodes.find(node => !node.used);
         if (node) {
             const team = PoolManager.instance.get("team", this.teamPrefab);
             team.setParent(this.node);
-            team.setPosition(this.spawnPoint.position);
+            team.setPosition(this.spawnPoint.worldPosition);
         } else {
             console.log("no waiting nodes");
         }
     }
-
-    getAvailableWaitingNode(): Node {
-        return this.map.get("waiting").find(node => !node.used).nodes;
+    getRandomOrder(): OrderRecept {
+        const randomIndex = Math.floor(Math.random() * this.mapOrders.length);
+        const order = this.mapOrders[randomIndex];
+        return new OrderRecept(order.name, order.time);
     }
-    getAvailableBattleNode(): Node {
-        return this.map.get("battle").find(node => !node.used).nodes;
+    getAvailableWaitingNode(): NodeArea {
+        var node = this.mapNodes.get("waiting").find(node => !node.used);
+        return node;
     }
-    getAvailablePistolNode(): Node {
-        return this.map.get("pistol").find(node => !node.used).nodes;
+    getAvailableBattleNode(): NodeArea {
+        var node = this.mapNodes.get("battle").find(node => !node.used);
+        return node;
     }
-    getAvailableRifleNode(): Node {
-        return this.map.get("rifle").find(node => !node.used).nodes;
+    getAvailablePistolNode(): NodeArea {
+        var node = this.mapNodes.get("pistol").find(node => !node.used);
+        return node;
     }
-    getAvailableStaffNode(): Node {
-        return this.map.get("staff").find(node => !node.used).nodes;
+    getAvailableRifleNode(): NodeArea {
+        var node = this.mapNodes.get("rifle").find(node => !node.used);
+        return node;
+    }
+    getUsedWaitingNode(): NodeArea {
+        var node = this.mapNodes.get("waiting").find(node => node.used);
+        if (node) {
+            return node;
+        }
+        return null;
     }
 }
 

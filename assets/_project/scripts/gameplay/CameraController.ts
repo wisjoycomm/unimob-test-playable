@@ -53,8 +53,8 @@ export class CameraController extends Component {
         this.paths = paths;
         if (this.paths.length > 0) {
             const firstPath = this.paths[0];
-            this.camera.node.setPosition(firstPath.node.position);
-            this.camera.node.setRotation(firstPath.node.rotation);
+            this.camera.node.setPosition(firstPath.node.worldPosition);
+            this.camera.node.setRotation(firstPath.node.worldRotation);
             this.camera.orthoHeight = firstPath.fieldOfView;
         }
         else {
@@ -70,7 +70,7 @@ export class CameraController extends Component {
                 this._currentPathIndex = 0;
             }
             const nextPath = this.paths[this._currentPathIndex];
-            this.moveTo(nextPath.node.position, nextPath.node.rotation, nextPath.fieldOfView);
+            this.moveTo(nextPath.node.worldPosition, nextPath.node.worldRotation, nextPath.fieldOfView);
         }
         else {
             console.warn('No paths set for CameraController');

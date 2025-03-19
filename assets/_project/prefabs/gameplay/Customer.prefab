@@ -2203,7 +2203,16 @@
     "__prefab": {
       "__id__": 79
     },
-    "animator": null,
+    "animator": {
+      "__id__": 76
+    },
+    "meshRenderer": {
+      "__id__": 72
+    },
+    "uniformMaterial": {
+      "__uuid__": "dfc91619-9788-4be4-9acd-944f89fb7d8e",
+      "__expectedType__": "cc.Material"
+    },
     "_id": ""
   },
   {

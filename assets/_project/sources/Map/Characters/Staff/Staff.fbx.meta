@@ -148,29 +148,6 @@
       ],
       "subMetas": {}
     },
-    "6ec4f": {
-      "importer": "gltf-animation",
-      "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@6ec4f",
-      "displayName": "",
-      "id": "6ec4f",
-      "name": "A pose.animation",
-      "userData": {
-        "gltfIndex": 0,
-        "wrapMode": 2,
-        "sample": 30,
-        "span": {
-          "from": 0,
-          "to": 0.03333333507180214
-        },
-        "events": []
-      },
-      "ver": "1.0.16",
-      "imported": true,
-      "files": [
-        ".cconb"
-      ],
-      "subMetas": {}
-    },
     "2cd1c": {
       "importer": "gltf-animation",
       "uuid": "b88b094d-7991-4f80-9695-d3d0d96531f8@2cd1c",
@@ -804,21 +781,15 @@
       }
     ],
     "fbx": {
-      "smartMaterialEnabled": true
+      "smartMaterialEnabled": false,
+      "preferLocalTimeSpan": false
     },
     "animationImportSettings": [
       {
         "name": "A pose",
         "duration": 0.03333333507180214,
         "fps": 30,
-        "splits": [
-          {
-            "name": "A pose",
-            "from": 0,
-            "to": 0.03333333507180214,
-            "wrapMode": 2
-          }
-        ]
+        "splits": []
       },
       {
         "name": "Attack",
@@ -1294,6 +1265,7 @@
         ]
       }
     },
-    "redirect": "b88b094d-7991-4f80-9695-d3d0d96531f8@28bdd"
+    "redirect": "b88b094d-7991-4f80-9695-d3d0d96531f8@28bdd",
+    "skipValidation": true
   }
 }

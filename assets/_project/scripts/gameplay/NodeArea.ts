@@ -3,6 +3,6 @@ const { ccclass, property } = _decorator;
 
 @ccclass("NodeArea")
 export class NodeArea {
-    nodes: Node;
+    node: Node;
     used: boolean;
 }

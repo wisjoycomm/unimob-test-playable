@@ -1,7 +1,7 @@
 import { SkeletalAnimation } from 'cc';
 import { EventManager } from 'db://assets/scripts/framework/core/EventManager';
 import { State } from 'db://assets/scripts/framework/fsm/StateMachine';
-import { ICharacter } from '../CharacterBase';
+import { ICharacter } from '../types/ICharacter';
 
 
 export class SpawnState extends State<ICharacter> {
@@ -9,8 +9,8 @@ export class SpawnState extends State<ICharacter> {
         this.owner.animator.stop();
     }
     public update(deltaTime: number): void { }
-    public checkTransitions(): State<ICharacter> {
-        return null;
+    public canTransitions(): boolean {
+        return true;
     }
     public onEnter(prevState?: State<ICharacter>): void {
         this.owner.animator.play("spawn");

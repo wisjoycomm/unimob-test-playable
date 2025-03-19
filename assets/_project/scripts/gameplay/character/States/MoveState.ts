@@ -1,37 +1,41 @@
 import { State } from 'db://assets/scripts/framework/fsm/StateMachine';
-import { ICharacter } from '../CharacterBase';
-import { Quat, tween, Vec3 } from 'cc';
+import { ICharacter } from '../types/ICharacter';
+import { Quat, tween, v3, Vec3 } from 'cc';
 import { GameManager } from '../../GameManager';
+import { OrderRecept } from '../types/OrderRecept';
+import { StaffState } from './StaffState';
 
 
 export class MoveState extends State<ICharacter> {
-    targetPos: Vec3 = null!;
+    speed: number = 5;
+    isMoving: boolean = false;
     public onExit(nextState?: State<ICharacter>): void {
         this.owner.animator.stop();
     }
     public update(deltaTime: number): void {
-        if (this.targetPos) {
-            const currentPos = this.owner.node.position;
-            const direction = this.targetPos.clone().subtract(currentPos);
-            const angle = Math.atan2(direction.y, direction.x) * 180 / Math.PI;
-            this.owner.node.rotation = new Quat(0, angle, 0, 0);
-        }
     }
-    public checkTransitions(): State<ICharacter> {
-        return null;
+
+    public canTransitions(): boolean {
+        return !this.isMoving;
     }
     public onEnter(prevState?: State<ICharacter>): void {
         this.owner.animator.play("move");
     }
 
-    public moveToNode(targetPos: Vec3): void {
-        this.targetPos = targetPos;
-        tween(this.owner.node).by(1, { position: targetPos }).start();
-    }
-
-    public moveToWaiting(): void {
-        const waitingNode = GameManager.instance.getAvailableWaitingNode();
-        this.moveToNode(waitingNode.position);
+    public moveToNode(offset: Vec3 = Vec3.ZERO, callback?: () => void): void {
+        if (this.owner.currentNode) {
+            this.owner.currentNode.used = true;
+            this.isMoving = true;
+            var target = this.owner.currentNode.node.worldPosition.clone().add(offset);
+            var distance = Vec3.distance(this.owner.node.worldPosition, target);
+            tween(this.owner.node)
+                .to(distance / this.speed, { worldPosition: target })
+                .call(() => {
+                    this.isMoving = false;
+                    callback?.();
+                })
+                .start();
+        }
     }
 }
 
@@ -39,6 +43,34 @@ export class MoveStateCustomer extends MoveState {
     override onEnter(prevState?: State<ICharacter>): void {
         super.onEnter(prevState);
         this.moveToWaiting();
+    }
+    private moveToWaiting(): void {
+        this.owner.currentNode = GameManager.instance.getAvailableWaitingNode();
+        this.moveToNode(Vec3.ZERO, () => {
+            this.owner.changeState("order");
+        });
+    }
+}
+
+export class MoveStateStaff extends MoveState {
+    override onEnter(prevState?: State<ICharacter>): void {
+        super.onEnter(prevState);
+        this.moveToStaff();
+    }
+
+    moveToStaff(order?: OrderRecept): void {
+        this.owner.currentNode = GameManager.instance.getUsedWaitingNode();
+
+        if (this.owner.currentNode) {
+            this.moveToNode(new Vec3(0, 0, 2.5), () => {
+                var staffState = this.owner.getStateMachine().getState("staff") as StaffState;
+                staffState.setOrder(order);
+                this.owner.changeState("staff");
+            });
+        }
+        else {
+            this.owner.changeState("idle");
+        }
     }
 }
 
